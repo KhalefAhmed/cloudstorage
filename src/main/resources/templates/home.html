@@ -160,7 +160,7 @@
                                 <button type="button" class="btn btn-success" id="btnEditCredential"
                                         th:data-id="${credential.getCredentialid()}"
                                         th:data-url="${credential.getUrl()}"
-                                        th:data-username="${credential.getUserName()}"
+                                        th:data-username="${credential.getUsername()}"
                                         th:data-decryptedPassword = "${encryptionService.decryptValue(credential.password, credential.key)}"
                                         th:onclick="showCredentialModal(this.getAttribute('data-id'), this.getAttribute('data-url'), this.getAttribute('data-username'), this.getAttribute('data-decryptedPassword'))">
                                     Edit</button>
@@ -168,7 +168,7 @@
                                    th:href="@{/credential/delete-credential/{credentialId}(credentialId = ${credential.getCredentialid()})}">Delete</a>
                             </td>
                             <th id="tblCredentialUrl" scope="row" th:text="${credential.getUrl()}">Example Credential URL</th>
-                            <td id="tblCredentialUsername" th:text="${credential.getUserName()}">Example Credential Username</td>
+                            <td id="tblCredentialUsername" th:text="${credential.getUsername()}">Example Credential Username</td>
                             <td id="tblCredentialPassword" th:text="${credential.getPassword()}">Example Credential Password</td>
                         </tr>
                         </tbody>
