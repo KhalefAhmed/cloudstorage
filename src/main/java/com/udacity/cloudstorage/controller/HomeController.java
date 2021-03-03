@@ -19,7 +19,7 @@ public class HomeController {
 
     private FileService fileService;
     private NoteService noteService;
-    private CredentialsService credentialsService;
+    private CredentialService credentialsService;
     private UserService userService;
 
     private EncryptionService encryptionService;
@@ -30,7 +30,7 @@ public class HomeController {
 
 
     public HomeController(UserService userService, FileService fileService, NoteService noteService,
-                          CredentialsService credentialsService, EncryptionService encryptionService) {
+                          CredentialService credentialsService, EncryptionService encryptionService) {
         this.fileService = fileService;
         this.noteService = noteService;
         this.credentialsService = credentialsService;

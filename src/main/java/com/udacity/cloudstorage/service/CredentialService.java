@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CredentialsService {
+public class CredentialService {
     private UserMapper userMapper;
     private CredentialMapper credentialMapper;
 
 
-    public CredentialsService(UserMapper userMapper, CredentialMapper credentialMapper) {
+    public CredentialService(UserMapper userMapper, CredentialMapper credentialMapper) {
         this.userMapper = userMapper;
         this.credentialMapper = credentialMapper;
     }
