@@ -1,6 +1,7 @@
 package com.udacity.cloudstorage.service;
 
-
+import com.udacity.cloudstorage.entity.User;
+import com.udacity.cloudstorage.mapper.UserMapper;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

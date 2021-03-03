@@ -1,5 +1,6 @@
 package com.udacity.cloudstorage.mapper;
 
+import com.udacity.cloudstorage.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;

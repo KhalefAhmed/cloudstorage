@@ -1,6 +1,8 @@
 package com.udacity.cloudstorage.service;
 
 
+import com.udacity.cloudstorage.entity.User;
+import com.udacity.cloudstorage.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;

@@ -1,5 +1,6 @@
 package com.udacity.cloudstorage.mapper;
 
+import com.udacity.cloudstorage.entity.File;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
