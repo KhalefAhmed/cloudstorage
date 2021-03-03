@@ -1,4 +1,4 @@
-package com.udacity.cloudstorage.model;
+package com.udacity.cloudstorage.entity;
 
 public class Credential {
 
@@ -8,6 +8,15 @@ public class Credential {
     private String key;
     private String password;
     private Integer userId;
+
+    public Credential(Integer credentialid, String url, String username, String key, String password, Integer userId) {
+        this.credentialid = credentialid;
+        this.url = url;
+        this.username = username;
+        this.key = key;
+        this.password = password;
+        this.userId = userId;
+    }
 
     public Integer getCredentialid() {
         return credentialid;

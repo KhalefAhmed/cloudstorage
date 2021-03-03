@@ -1,4 +1,4 @@
-package com.udacity.cloudstorage.model;
+package com.udacity.cloudstorage.entity;
 
 public class Note {
 

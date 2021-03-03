@@ -1,7 +1,6 @@
-package com.udacity.cloudstorage.web;
+package com.udacity.cloudstorage.controller;
 
 
-import com.udacity.cloudstorage.model.User;
 import com.udacity.cloudstorage.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

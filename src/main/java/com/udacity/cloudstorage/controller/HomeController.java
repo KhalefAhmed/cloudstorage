@@ -1,16 +1,16 @@
-package com.udacity.cloudstorage.web;
+package com.udacity.cloudstorage.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/home")
+public class HomeController {
 
     @GetMapping
-    public String loginView(){
-        return "login";
+    public String homeView(){
+        return "home";
     }
 
 }

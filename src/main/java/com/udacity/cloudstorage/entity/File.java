@@ -1,6 +1,4 @@
-package com.udacity.cloudstorage.model;
-
-import org.springframework.web.multipart.MultipartFile;
+package com.udacity.cloudstorage.entity;
 
 public class File {
 
@@ -8,8 +6,20 @@ public class File {
     private String filename;
     private String contenttype;
     private String filesize;
-    private String userid;
-    private MultipartFile filedata;
+    private Integer userid;
+    private byte[] filedata;
+
+    public File(Integer fileId, String filename, String contenttype, String filesize, Integer userid, byte[] filedata) {
+        this.fileId = fileId;
+        this.filename = filename;
+        this.contenttype = contenttype;
+        this.filesize = filesize;
+        this.userid = userid;
+        this.filedata = filedata;
+    }
+
+    public File() {
+    }
 
     public Integer getFileId() {
         return fileId;
@@ -43,19 +53,19 @@ public class File {
         this.filesize = filesize;
     }
 
-    public String getUserid() {
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(Integer userid) {
         this.userid = userid;
     }
 
-    public MultipartFile getFiledata() {
+    public byte[] getFiledata() {
         return filedata;
     }
 
-    public void setFiledata(MultipartFile filedata) {
+    public void setFiledata(byte[] filedata) {
         this.filedata = filedata;
     }
 }
