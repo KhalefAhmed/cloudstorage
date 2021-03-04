@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("credential")
-
 public class CredentialController {
 
     private final CredentialService credentialService;
@@ -50,24 +51,41 @@ public class CredentialController {
         String newUrl = newCredential.getUrl();
         String credentialIdStr = newCredential.getCredentialId();
         String password = newCredential.getPassword();
-
         SecureRandom random = new SecureRandom();
         byte[] key = new byte[16];
         random.nextBytes(key);
         String encodedKey = Base64.getEncoder().encodeToString(key);
         String encryptedPassword = encryptionService.encryptValue(password, encodedKey);
+        User user = userService.getUser(userName);
+        Integer userId = user.getUserId();
 
-        if (credentialIdStr.isEmpty()) {
-            credentialService.addCredential(newUrl, userName, newCredential.getUserName(), encodedKey, encryptedPassword);
-        } else {
-            Credential existingCredential = getCredential(Integer.parseInt(credentialIdStr));
-            credentialService.updateCredential(existingCredential.getCredentialid(), newCredential.getUserName(), newUrl, encodedKey, encryptedPassword);
+        List<Credential> credentials = credentialService.getCredentialsByUserId(userId);
+        boolean credentialIsDuplicate = false;
+
+        for (Credential credential: credentials) {
+            if (encryptionService.decryptValue(credential.getPassword(),credential.getKey()).equals(password)
+                    && credential.getUsername().equals(credentialIdStr)) {
+                credentialIsDuplicate = true;
+                break;
+            }
         }
 
-        User user = userService.getUser(userName);
-        model.addAttribute("credentials", credentialService.getCredentialsByUserId(user.getUserId()));
+        if (credentialIdStr.isEmpty() && !credentialIsDuplicate) {
+            credentialService.addCredential(newUrl, credentialIdStr, newCredential.getUserName(), encodedKey, encryptedPassword);
+            model.addAttribute("result", "success");
+
+        } else if(credentialIsDuplicate) {
+            model.addAttribute("result", "error");
+            model.addAttribute("message", "You have tried to add a duplicate credentials.");
+        }
+        else {
+            Credential existingCredential = getCredential(Integer.parseInt(credentialIdStr));
+            credentialService.updateCredential(existingCredential.getCredentialid(), newCredential.getUserName(), newUrl, encodedKey, encryptedPassword);
+            model.addAttribute("result", "success");
+        }
+
+        model.addAttribute("credentials", credentialService.getCredentialsByUserId(userId));
         model.addAttribute("encryptionService", encryptionService);
-        model.addAttribute("result", "success");
 
 
         return "result";
