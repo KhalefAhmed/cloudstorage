@@ -12,7 +12,7 @@ public interface UserMapper {
     @Select("SELECT * FROM USERS WHERE username = #{username}")
     User getUser(String username);
 
-    @Select("SELECT * FROM USERS WHERE userid = #{userId}")
+    @Select("SELECT * FROM USERS WHERE userId = #{userId}")
     User getUserById(Integer userId);
 
     @Insert("INSERT INTO USERS (username, salt, password, firstName, lastName) VALUES (#{username}, #{salt}, #{password}, #{firstName}, #{lastName})")

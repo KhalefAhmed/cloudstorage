@@ -1,8 +1,11 @@
 package com.udacity.cloudstorage.controller;
 
 
-import com.udacity.cloudstorage.entity.*;
-import com.udacity.cloudstorage.service.*;
+import com.udacity.cloudstorage.entity.CredentialForm;
+import com.udacity.cloudstorage.entity.FileForm;
+import com.udacity.cloudstorage.entity.NoteForm;
+import com.udacity.cloudstorage.entity.User;
+import com.udacity.cloudstorage.services.*;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,19 +17,15 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 public class HomeController {
 
     private FileService fileService;
     private NoteService noteService;
     private CredentialService credentialsService;
     private UserService userService;
-
     private EncryptionService encryptionService;
 
-    private List<File> files;
-    private List<Note> notes;
-    private List<Credential> credentials;
 
 
     public HomeController(UserService userService, FileService fileService, NoteService noteService,

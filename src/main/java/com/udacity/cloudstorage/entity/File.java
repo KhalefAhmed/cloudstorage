@@ -3,16 +3,16 @@ package com.udacity.cloudstorage.entity;
 public class File {
 
     private Integer fileId;
-    private String fileName;
-    private String contentType;
+    private String filename;
+    private String contenttype;
     private String filesize;
     private Integer userid;
     private byte[] filedata;
 
     public File(Integer fileId, String filename, String contenttype, String filesize, Integer userid, byte[] filedata) {
         this.fileId = fileId;
-        this.fileName = filename;
-        this.contentType = contenttype;
+        this.filename = filename;
+        this.contenttype = contenttype;
         this.filesize = filesize;
         this.userid = userid;
         this.filedata = filedata;
@@ -29,20 +29,20 @@ public class File {
         this.fileId = fileId;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
-    public String getContentType() {
-        return contentType;
+    public String getContenttype() {
+        return contenttype;
     }
 
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
+    public void setContenttype(String contenttype) {
+        this.contenttype = contenttype;
     }
 
     public String getFilesize() {

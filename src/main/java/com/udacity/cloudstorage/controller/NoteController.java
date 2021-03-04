@@ -1,12 +1,15 @@
 package com.udacity.cloudstorage.controller;
 
 import com.udacity.cloudstorage.entity.*;
-import com.udacity.cloudstorage.service.NoteService;
-import com.udacity.cloudstorage.service.UserService;
+import com.udacity.cloudstorage.services.NoteService;
+
+import com.udacity.cloudstorage.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("note")
 @Controller
@@ -41,18 +44,36 @@ public class NoteController {
                           @ModelAttribute("newNote") NoteForm newNote, @ModelAttribute("newCredential") CredentialForm newCredential,
                           Model model){
         String userName = authentication.getName();
+        User user = userService.getUser(userName);
+        Integer userId = user.getUserId();
         String newTitle = newNote.getTitle();
         String noteIdStr = newNote.getNoteId();
         String newDescription = newNote.getDescription();
-        if (noteIdStr.isEmpty()) {
+        List<Note> notes = noteService.getNotesByUserId(userId);
+        boolean noteIsDuplicate = false;
+
+        for (Note note: notes) {
+            if (note.getNoteTitle().equals(newTitle) && note.getNoteDescription().equals(newDescription)) {
+                noteIsDuplicate = true;
+                break;
+            }
+        }
+
+        if (noteIdStr.isEmpty() && !noteIsDuplicate) {
             noteService.createNote(newTitle, newDescription, userName);
-        } else {
+            model.addAttribute("result", "success");
+        }
+        else if(noteIsDuplicate){
+            model.addAttribute("result", "error");
+            model.addAttribute("message", "You have tried to add a duplicate note.");
+        }
+        else{
             Note existingNote = getNote(Integer.parseInt(noteIdStr));
             noteService.updateNote(existingNote.getNoteId(), newTitle, newDescription);
+            model.addAttribute("result", "success");
+
         }
-        Integer userId = getUserId(authentication);
         model.addAttribute("notes", noteService.getNotesByUserId(userId));
-        model.addAttribute("result", "success");
         return "result";
     }
 
