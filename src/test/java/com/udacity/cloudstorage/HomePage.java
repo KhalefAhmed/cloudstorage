@@ -204,4 +204,196 @@ public class HomePage {
 
         return new Credential(url, username, password);
     }
+
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
+    public void setLogoutButton(WebElement logoutButton) {
+        this.logoutButton = logoutButton;
+    }
+
+    public WebElement getFileUpload() {
+        return fileUpload;
+    }
+
+    public void setFileUpload(WebElement fileUpload) {
+        this.fileUpload = fileUpload;
+    }
+
+    public WebElement getBtnAddNewNote() {
+        return btnAddNewNote;
+    }
+
+    public void setBtnAddNewNote(WebElement btnAddNewNote) {
+        this.btnAddNewNote = btnAddNewNote;
+    }
+
+    public WebElement getBtnAddNewCredential() {
+        return btnAddNewCredential;
+    }
+
+    public void setBtnAddNewCredential(WebElement btnAddNewCredential) {
+        this.btnAddNewCredential = btnAddNewCredential;
+    }
+
+    public WebElement getTxtNoteTitle() {
+        return txtNoteTitle;
+    }
+
+    public void setTxtNoteTitle(WebElement txtNoteTitle) {
+        this.txtNoteTitle = txtNoteTitle;
+    }
+
+    public WebElement getNavNotesTab() {
+        return navNotesTab;
+    }
+
+    public void setNavNotesTab(WebElement navNotesTab) {
+        this.navNotesTab = navNotesTab;
+    }
+
+    public WebElement getNavCredentialsTab() {
+        return navCredentialsTab;
+    }
+
+    public void setNavCredentialsTab(WebElement navCredentialsTab) {
+        this.navCredentialsTab = navCredentialsTab;
+    }
+
+    public WebElement getTxtNoteDescription() {
+        return txtNoteDescription;
+    }
+
+    public void setTxtNoteDescription(WebElement txtNoteDescription) {
+        this.txtNoteDescription = txtNoteDescription;
+    }
+
+    public WebElement getBtnSaveChanges() {
+        return btnSaveChanges;
+    }
+
+    public void setBtnSaveChanges(WebElement btnSaveChanges) {
+        this.btnSaveChanges = btnSaveChanges;
+    }
+
+    public WebElement getTableNoteTitle() {
+        return tableNoteTitle;
+    }
+
+    public void setTableNoteTitle(WebElement tableNoteTitle) {
+        this.tableNoteTitle = tableNoteTitle;
+    }
+
+    public WebElement getTableNoteDescription() {
+        return tableNoteDescription;
+    }
+
+    public void setTableNoteDescription(WebElement tableNoteDescription) {
+        this.tableNoteDescription = tableNoteDescription;
+    }
+
+    public WebElement getBtnEditNote() {
+        return btnEditNote;
+    }
+
+    public void setBtnEditNote(WebElement btnEditNote) {
+        this.btnEditNote = btnEditNote;
+    }
+
+    public WebElement getBtnEditCredential() {
+        return btnEditCredential;
+    }
+
+    public void setBtnEditCredential(WebElement btnEditCredential) {
+        this.btnEditCredential = btnEditCredential;
+    }
+
+    public WebElement getTxtModifyNoteDescription() {
+        return txtModifyNoteDescription;
+    }
+
+    public void setTxtModifyNoteDescription(WebElement txtModifyNoteDescription) {
+        this.txtModifyNoteDescription = txtModifyNoteDescription;
+    }
+
+    public WebElement getAncDeleteNote() {
+        return ancDeleteNote;
+    }
+
+    public void setAncDeleteNote(WebElement ancDeleteNote) {
+        this.ancDeleteNote = ancDeleteNote;
+    }
+
+    public WebElement getaDeleteCredential() {
+        return aDeleteCredential;
+    }
+
+    public void setaDeleteCredential(WebElement aDeleteCredential) {
+        this.aDeleteCredential = aDeleteCredential;
+    }
+
+    public WebElement getTxtCredentialUrl() {
+        return txtCredentialUrl;
+    }
+
+    public void setTxtCredentialUrl(WebElement txtCredentialUrl) {
+        this.txtCredentialUrl = txtCredentialUrl;
+    }
+
+    public WebElement getTxtCredentialUsername() {
+        return txtCredentialUsername;
+    }
+
+    public void setTxtCredentialUsername(WebElement txtCredentialUsername) {
+        this.txtCredentialUsername = txtCredentialUsername;
+    }
+
+    public WebElement getTxtCredentialPassword() {
+        return txtCredentialPassword;
+    }
+
+    public void setTxtCredentialPassword(WebElement txtCredentialPassword) {
+        this.txtCredentialPassword = txtCredentialPassword;
+    }
+
+    public WebElement getBtnCredentialSaveChanges() {
+        return btnCredentialSaveChanges;
+    }
+
+    public void setBtnCredentialSaveChanges(WebElement btnCredentialSaveChanges) {
+        this.btnCredentialSaveChanges = btnCredentialSaveChanges;
+    }
+
+    public WebElement getTblCredentialUrl() {
+        return tblCredentialUrl;
+    }
+
+    public void setTblCredentialUrl(WebElement tblCredentialUrl) {
+        this.tblCredentialUrl = tblCredentialUrl;
+    }
+
+    public WebElement getTblCredentialUsername() {
+        return tblCredentialUsername;
+    }
+
+    public void setTblCredentialUsername(WebElement tblCredentialUsername) {
+        this.tblCredentialUsername = tblCredentialUsername;
+    }
+
+    public WebElement getTblCredentialPassword() {
+        return tblCredentialPassword;
+    }
+
+    public void setTblCredentialPassword(WebElement tblCredentialPassword) {
+        this.tblCredentialPassword = tblCredentialPassword;
+    }
+
+    public JavascriptExecutor getJs() {
+        return js;
+    }
+
+    public WebDriverWait getWait() {
+        return wait;
+    }
 }

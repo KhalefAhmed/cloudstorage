@@ -33,22 +33,7 @@ class CloudstorageApplicationTests {
 		}
 	}
 
-	protected HomePage signUpAndLogin() {
-		driver.get("http://localhost:" + this.port + "/signup");
-		SignupPage signupPage = new SignupPage(driver);
-		signupPage.setFirstName("khalil");
-		signupPage.setLastName("khalef");
-		signupPage.setUserName("ahmed");
-		signupPage.setPassword("khalef");
-		signupPage.signUp();
-		driver.get("http://localhost:" + this.port + "/login");
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.setUserName("khalil");
-		loginPage.setPassword("khalef");
-		loginPage.login();
 
-		return new HomePage(driver);
-	}
 
 	@Test
 	public void testUserSignupLogin() {
@@ -64,7 +49,29 @@ class CloudstorageApplicationTests {
 		loginPage.setUserName("ahmed");
 		loginPage.setPassword("khalef");
 		loginPage.login();
+
 		Assertions.assertEquals("Home", driver.getTitle());
+	}
+
+	@Test
+	public void testUserCreatCredential() {
+		driver.get("http://localhost:" + this.port + "/signup");
+		SignupPage signupPage = new SignupPage(driver);
+		signupPage.setFirstName("khalil");
+		signupPage.setLastName("khalef");
+		signupPage.setUserName("ahmed");
+		signupPage.setPassword("khalef");
+		signupPage.signUp();
+		driver.get("http://localhost:" + this.port + "/login");
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.setUserName("ahmed");
+		loginPage.setPassword("khalef");
+
+		HomePage homePage = new HomePage(driver);
+
+
+
 
 	}
 
