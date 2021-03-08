@@ -19,7 +19,7 @@ public class SignupPage {
     @FindBy(id = "inputPassword")
     private WebElement inputPassword;
 
-    @FindBy(id = "submit-button")
+    @FindBy(id = "submit")
     private WebElement submitButton;
 
     private final JavascriptExecutor js;
