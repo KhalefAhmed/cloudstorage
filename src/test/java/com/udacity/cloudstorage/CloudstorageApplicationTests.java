@@ -64,6 +64,8 @@ class CloudstorageApplicationTests {
 		loginPage.setUserName("ahmed");
 		loginPage.setPassword("khalef");
 		loginPage.login();
+		Assertions.assertEquals("Home", driver.getTitle());
+
 	}
 
 }
