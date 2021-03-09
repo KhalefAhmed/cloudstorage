@@ -82,7 +82,7 @@ public class CredentialTests {
      * credentials, and verifies that the changes are displayed.
      */
     @Test
-    public void testCredentialModification() {
+    public void testCredentialModificationAndDelete() {
         driver.get("http://localhost:" + this.port + "/signup");
         SignupPage signupPage = new SignupPage(driver);
         signupPage.setFirstName(USERNAME);
@@ -115,22 +115,24 @@ public class CredentialTests {
         setCredentialFields(newUrl, newCredentialUsername, newPassword, homePage);
         homePage.saveCredentialChanges();
 
-        System.out.println("before result page");
 
         ResultPage result = new ResultPage(driver);
         result.clickOk();
-        System.out.println("After result page");
-
         homePage.navToCredentialsTab();
         Credential modifiedCredential = homePage.getFirstCredential();
+
         Assertions.assertEquals(newUrl, modifiedCredential.getUrl());
         Assertions.assertEquals(newCredentialUsername, modifiedCredential.getUsername());
+
         String modifiedCredentialPassword = modifiedCredential.getPassword();
+
         Assertions.assertNotEquals(newPassword, modifiedCredentialPassword);
         Assertions.assertNotEquals(firstEncryptedPassword, modifiedCredentialPassword);
+
         homePage.deleteCredential();
         result.clickOk();
         homePage.logout();
+        Assertions.assertEquals("Login", driver.getTitle());
 
     }
 
