@@ -5,7 +5,8 @@ import com.udacity.cloudstorage.entity.CredentialForm;
 import com.udacity.cloudstorage.entity.FileForm;
 import com.udacity.cloudstorage.entity.NoteForm;
 import com.udacity.cloudstorage.entity.User;
-import com.udacity.cloudstorage.services.*;
+import com.udacity.cloudstorage.service.*;
+import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -58,30 +59,44 @@ public class HomeController {
 
     @PostMapping
     public String newFile(
-            Authentication authentication, @ModelAttribute("newFile") FileForm newFile,
-            @ModelAttribute("newNote") NoteForm newNote,
-            @ModelAttribute("newCredential") CredentialForm newCredential, Model model) throws IOException {
+            Authentication authentication, @ModelAttribute("newFile") FileForm newFile, Model model) {
+
         String userName = authentication.getName();
         User user = userService.getUser(userName);
         Integer userId = user.getUserId();
         List<String> files = fileService.getFilesByUserId(userId);
-        MultipartFile multipartFile = newFile.getFile();
-        String fileName = multipartFile.getOriginalFilename();
-        boolean fileIsDuplicate = false;
-        for (String file: files) {
-            if (file.equals(fileName)) {
-                fileIsDuplicate = true;
-                break;
-            }
-        }
 
-        if (!fileIsDuplicate) {
-            fileService.addFile(multipartFile, userName);
-            model.addAttribute("result", "success");
-        } else {
-            model.addAttribute("result", "error");
-            model.addAttribute("message", "You have tried to add a duplicate file.");
-        }
+
+         MultipartFile multipartFile = newFile.getFile();
+         String fileName = multipartFile.getOriginalFilename();
+
+         boolean fileIsDuplicate = false;
+
+         for (String file: files) {
+             if (file.equals(fileName)) {
+                    fileIsDuplicate = true;
+                    break;
+                }
+            }
+
+            if (!fileIsDuplicate) {
+
+                 try {
+                  fileService.addFile(multipartFile, userName);
+                    }
+                 catch (IOException exception) {
+                     exception.printStackTrace();
+                     model.addAttribute("result", "error");
+                     model.addAttribute("message", "The file is too large to upload > 5 MB ");
+
+                 }
+                model.addAttribute("result", "success");
+            }
+            else {
+                model.addAttribute("result", "error");
+                model.addAttribute("message", "You have tried to add a duplicate file.");
+            }
+
         model.addAttribute("files", fileService.getFilesByUserId(userId));
         return "result";
     }

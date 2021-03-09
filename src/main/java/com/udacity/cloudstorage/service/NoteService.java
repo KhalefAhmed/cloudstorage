@@ -1,4 +1,4 @@
-package com.udacity.cloudstorage.services;
+package com.udacity.cloudstorage.service;
 
 
 import com.udacity.cloudstorage.entity.Note;

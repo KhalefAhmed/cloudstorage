@@ -1,10 +1,10 @@
 package com.udacity.cloudstorage.controller;
 
 import com.udacity.cloudstorage.entity.*;
-import com.udacity.cloudstorage.services.CredentialService;
+import com.udacity.cloudstorage.service.CredentialService;
 
-import com.udacity.cloudstorage.services.EncryptionService;
-import com.udacity.cloudstorage.services.UserService;
+import com.udacity.cloudstorage.service.EncryptionService;
+import com.udacity.cloudstorage.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
