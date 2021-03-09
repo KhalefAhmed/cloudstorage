@@ -123,8 +123,8 @@ public class CredentialTests {
 
         homePage.navToCredentialsTab();
         Credential modifiedCredential = homePage.getFirstCredential();
-        Assertions.assertNotEquals(newUrl, modifiedCredential.getUrl());
-        Assertions.assertNotEquals(newCredentialUsername, modifiedCredential.getUsername());
+        Assertions.assertEquals(newUrl, modifiedCredential.getUrl());
+        Assertions.assertEquals(newCredentialUsername, modifiedCredential.getUsername());
         String modifiedCredentialPassword = modifiedCredential.getPassword();
         Assertions.assertNotEquals(newPassword, modifiedCredentialPassword);
         Assertions.assertNotEquals(firstEncryptedPassword, modifiedCredentialPassword);
