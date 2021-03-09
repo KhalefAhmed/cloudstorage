@@ -31,7 +31,7 @@ public class HomePage {
     @FindBy(id = "nav-notes-tab")
     private WebElement navNotesTab;
 
-    @FindBy(id = "nav-credentials-tab")
+    @FindBy(id = "nav-credentials-tab-btn")
     private WebElement navCredentialsTab;
 
     @FindBy(id = "note-description")

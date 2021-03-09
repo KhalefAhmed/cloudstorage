@@ -44,11 +44,12 @@ public class CredentialTests {
 
     @Test
     public void testUserCreatCredential() {
+
         driver.get("http://localhost:" + this.port + "/signup");
         SignupPage signupPage = new SignupPage(driver);
         signupPage.setFirstName(USERNAME);
         signupPage.setLastName("khalef");
-        signupPage.setUserName("ahmed");
+        signupPage.setUserName(USERNAME);
         signupPage.setPassword(PASSWORD);
         signupPage.signUp();
         driver.get("http://localhost:" + this.port + "/login");
@@ -56,34 +57,27 @@ public class CredentialTests {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.setUserName(USERNAME);
         loginPage.setPassword(PASSWORD);
+        loginPage.login();
 
         HomePage homePage = new HomePage(driver);
-        homePage.setCredentialUrl(URL);
-        createAndVerifyCredential(URL, USERNAME, PASSWORD, homePage);
-
-
-
-
-    }
-
-    private void createAndVerifyCredential(String url, String username, String password, HomePage homePage) {
-        createCredential(url, username, password, homePage);
-        homePage.navToCredentialsTab();
-        Credential credential = homePage.getFirstCredential();
-        Assertions.assertEquals(url, credential.getUrl());
-        Assertions.assertEquals(username, credential.getUsername());
-        Assertions.assertNotEquals(password, credential.getPassword());
-    }
-
-    private void createCredential(String url, String username, String password, HomePage homePage) {
         homePage.navToCredentialsTab();
         homePage.addNewCredential();
-        setCredentialFields(url, username, password, homePage);
+        setCredentialFields(URL, USERNAME, PASSWORD, homePage);
         homePage.saveCredentialChanges();
         ResultPage resultPage = new ResultPage(driver);
         resultPage.clickOk();
         homePage.navToCredentialsTab();
+
+        homePage.navToCredentialsTab();
+        Credential credential = homePage.getFirstCredential();
+        Assertions.assertEquals(URL, credential.getUrl());
+        Assertions.assertEquals(USERNAME, credential.getUsername());
+        Assertions.assertNotEquals(PASSWORD, credential.getPassword());
+
+
     }
+
+
 
     private void setCredentialFields(String url, String username, String password, HomePage homePage) {
         homePage.setCredentialUrl(url);
