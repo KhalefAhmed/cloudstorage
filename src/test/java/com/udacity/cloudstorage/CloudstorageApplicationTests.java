@@ -85,6 +85,8 @@ class CloudstorageApplicationTests {
 		driver.get("http://localhost:" + this.port + "/home");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assertions.assertEquals("Login", driver.getTitle());
+		loginPage.login();
+		Assertions.assertNotEquals("Home",driver.getTitle());
 	}
 
 
