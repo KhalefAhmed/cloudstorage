@@ -16,11 +16,11 @@ public interface CredentialMapper {
     int insert(Credential credential);
 
     @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialid}")
-    Credential getCredential(Integer credentialId);
+    Credential getCredential(Integer credentialid);
 
     @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialid}")
-    void deleteCredential(Integer credentialId);
+    void deleteCredential(Integer credentialid);
 
     @Update("UPDATE CREDENTIALS SET url = #{url}, key = #{key}, password = #{password}, username = #{username} WHERE credentialid = #{credentialid}")
-    void updateCredential(Integer credentialId, String newUserName, String url, String key, String password);
+    void updateCredential(Integer credentialid, String newUserName, String url, String key, String password);
 }

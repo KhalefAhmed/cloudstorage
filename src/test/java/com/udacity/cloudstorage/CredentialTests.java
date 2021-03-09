@@ -77,6 +77,63 @@ public class CredentialTests {
 
     }
 
+    /**
+     * Test that views an existing set of credentials, verifies that the viewable password is unencrypted, edits the
+     * credentials, and verifies that the changes are displayed.
+     */
+    @Test
+    public void testCredentialModification() {
+        driver.get("http://localhost:" + this.port + "/signup");
+        SignupPage signupPage = new SignupPage(driver);
+        signupPage.setFirstName(USERNAME);
+        signupPage.setLastName("khalef");
+        signupPage.setUserName(USERNAME);
+        signupPage.setPassword(PASSWORD);
+        signupPage.signUp();
+        driver.get("http://localhost:" + this.port + "/login");
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUserName(USERNAME);
+        loginPage.setPassword(PASSWORD);
+        loginPage.login();
+
+        HomePage homePage = new HomePage(driver);
+        homePage.navToCredentialsTab();
+        homePage.addNewCredential();
+        setCredentialFields(URL, USERNAME, PASSWORD, homePage);
+        homePage.saveCredentialChanges();
+        ResultPage resultPage = new ResultPage(driver);
+        resultPage.clickOk();
+        homePage.navToCredentialsTab();
+
+        Credential originalCredential = homePage.getFirstCredential();
+        String firstEncryptedPassword = originalCredential.getPassword();
+        homePage.editCredential();
+        String newUrl = URL_2;
+        String newCredentialUsername = USERNAME_2;
+        String newPassword = PASSWORD_2;
+        setCredentialFields(newUrl, newCredentialUsername, newPassword, homePage);
+        homePage.saveCredentialChanges();
+
+        System.out.println("before result page");
+
+        ResultPage result = new ResultPage(driver);
+        result.clickOk();
+        System.out.println("After result page");
+
+        homePage.navToCredentialsTab();
+        Credential modifiedCredential = homePage.getFirstCredential();
+        Assertions.assertNotEquals(newUrl, modifiedCredential.getUrl());
+        Assertions.assertNotEquals(newCredentialUsername, modifiedCredential.getUsername());
+        String modifiedCredentialPassword = modifiedCredential.getPassword();
+        Assertions.assertNotEquals(newPassword, modifiedCredentialPassword);
+        Assertions.assertNotEquals(firstEncryptedPassword, modifiedCredentialPassword);
+        homePage.deleteCredential();
+        result.clickOk();
+        homePage.logout();
+
+    }
+
     private void setCredentialFields(String url, String username, String password, HomePage homePage) {
         homePage.setCredentialUrl(url);
         homePage.setCredentialUsername(username);
