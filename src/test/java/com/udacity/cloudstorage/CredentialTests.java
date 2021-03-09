@@ -77,8 +77,6 @@ public class CredentialTests {
 
     }
 
-
-
     private void setCredentialFields(String url, String username, String password, HomePage homePage) {
         homePage.setCredentialUrl(url);
         homePage.setCredentialUsername(username);
